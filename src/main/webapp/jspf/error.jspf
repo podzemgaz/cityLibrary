@@ -1,0 +1,21 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: podze
+  Date: 06.08.2022
+  Time: 17:29
+  To change this template use File | Settings | File Templates.
+--%>
+
+
+<%--<jsp:useBean id="errorLoginMessage" type="java.lang.String"/>
+<jsp:useBean id="wrongAction" type="java.lang.String"/>
+<jsp:useBean id="nullPage" type="java.lang.String"/>--%>
+<c:if test="${not empty sessionScope.errorLoginMessage}">
+    <p>${errorLoginMessage}</p>
+</c:if>
+<c:if test="${not empty wrongAction}">
+    <p>${wrongAction}</p>
+</c:if>
+<c:if test="${not empty nullPage}">
+    <p>${nullPage}</p>
+</c:if>
