@@ -18,7 +18,7 @@ import org.apache.logging.log4j.Logger;
 import java.io.IOException;
 import java.io.Serial;
 
-@WebFilter("/jsp/*")
+
 public class TestFilter extends HttpFilter {
     private static final Logger LOG = LogManager.getLogger(TestFilter.class);
     @Serial

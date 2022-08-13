@@ -15,18 +15,14 @@
     <c:if test="${not empty sessionScope.user}">
         <jsp:forward page="main.jsp"/>
     </c:if>
-    <h2>Login</h2>
+    <h3>Login</h3>
     <form method="post" action="controller">
       <input type="hidden" name="command" value="login">
-        <label>
-            <input type="text" name="login" placeholder="Login" />
-        </label>
-        <label>
-            <input type="password" name="password" placeholder="Password" />
-        </label>
+        <input type="text" name="login" placeholder="Login" />
+        <input type="password" name="password" placeholder="Password" />
         <input type="submit" value="Login">
     </form>
-    <a href="${pageContext.request.contextPath}/index.jsp">Register</a>
+    <a href="registration.jsp">Register</a>
 
    <%@include file="/jspf/error.jspf"%>
 </body>

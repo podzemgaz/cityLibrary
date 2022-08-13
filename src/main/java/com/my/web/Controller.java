@@ -24,7 +24,10 @@ public class Controller extends HttpServlet {
         LOG.info("Controller#doGet");
         /*LOG.info("login: " + request.getParameter("login"));
         LOG.info("password: " + request.getParameter("password"));*/
-        process(req, res);
+        String page = process(req, res);
+        LOG.debug("go forward to page: " + page);
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
+        dispatcher.forward(req, res);
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
@@ -38,10 +41,13 @@ public class Controller extends HttpServlet {
         } catch (AppException e) {
             LOG.info("AppExeption");
         }*/
-        process(req, res);
+        String page = process(req, res);
+        LOG.debug("Send redirect to page: " + page);
+        page = getServletContext().getContextPath() + page;
+        res.sendRedirect(page);
     }
 
-    private void process(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    private String process(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         LOG.debug("Controller starts");
         String page;
         //define command from jsp
@@ -50,17 +56,20 @@ public class Controller extends HttpServlet {
 
         page = command.execute(req);
 
-        if (page != null) {
-            LOG.debug("go forward to page: " + page);
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
-            dispatcher.forward(req, res);
-        } else {
+
+        /*
+        *
+        * */
+
+        if (page == null) {
             LOG.debug("Send redirect to index page");
             //set error page
             page = ConfigManager.getProperty("path.page.index");
             req.getSession().setAttribute("nullPage", MessageManager.getProperty("message.nullpage"));
             res.sendRedirect(req.getContextPath() + page);
         }
+
+        return page;
     }
 
 }

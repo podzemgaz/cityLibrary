@@ -9,6 +9,10 @@ public enum CommandEnum {
         {
             this.command = new LogoutCommand();
         }
+    }, REGISTRATION {
+        {
+            this.command = new RegistrationCommand();
+        }
     };
     ActionCommand command;
     public ActionCommand getCommand() {

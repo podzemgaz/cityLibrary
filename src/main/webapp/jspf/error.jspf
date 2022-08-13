@@ -10,7 +10,7 @@
 <%--<jsp:useBean id="errorLoginMessage" type="java.lang.String"/>
 <jsp:useBean id="wrongAction" type="java.lang.String"/>
 <jsp:useBean id="nullPage" type="java.lang.String"/>--%>
-<c:if test="${not empty sessionScope.errorLoginMessage}">
+<c:if test="${not empty errorLoginMessage}">
     <p>${errorLoginMessage}</p>
 </c:if>
 <c:if test="${not empty wrongAction}">

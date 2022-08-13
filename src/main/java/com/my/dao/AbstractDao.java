@@ -1,6 +1,7 @@
 package com.my.dao;
 
 import com.my.entity.Entity;
+import com.my.exception.DaoException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,7 +16,7 @@ public abstract class AbstractDao<T extends Entity> {
     protected Connection con;
 
     public abstract boolean create(T entity);
-    public abstract List<T> findAll();
+    public abstract List<T> findAll() throws DaoException;
     public abstract T findById(int id);
     public abstract T update(T entity);
     public abstract boolean delete(T entity);
