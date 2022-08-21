@@ -12,16 +12,25 @@ public class ActionFactory {
         //extract name of command from request
         String action = req.getParameter("command");
         LOG.trace("Command name in request: " + action);
+        /*if (action == null) {
+            action = (String) req.getSession().getAttribute("command");
+            LOG.trace("Command name in session: " + action);
+
+        } else {
+            LOG.trace("Clear command in session");
+            req.getSession().setAttribute("command", null);
+        }*/
         if (action == null || action.isEmpty()) {
             return current;
         }
+
         //getting command that corresponds to name
         try {
             CommandEnum currentEnum = CommandEnum.valueOf(action.toUpperCase());
             current = currentEnum.getCommand();
         } catch (IllegalArgumentException e) {
             LOG.error("wrong action");
-            req.setAttribute("wrongAction", action + MessageManager.getProperty("message.wrongaction"));
+            req.getSession().setAttribute("errorMessage", action + MessageManager.getProperty("message.wrong_action"));
         }
 
         return current;

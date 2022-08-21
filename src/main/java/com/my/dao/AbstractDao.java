@@ -14,12 +14,9 @@ import java.util.List;
 public abstract class AbstractDao<T extends Entity> {
     protected final static Logger LOG = LogManager.getLogger(AbstractDao.class);
     protected Connection con;
-
-    public abstract boolean create(T entity);
     public abstract List<T> findAll() throws DaoException;
-    public abstract T findById(int id);
-    public abstract T update(T entity);
-    public abstract boolean delete(T entity);
+    public abstract T findById(int id) throws DaoException;
+    public abstract boolean update(T entity) throws DaoException;
 
     public void close(Statement stmt) {
         if (stmt != null) {

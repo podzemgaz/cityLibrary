@@ -1,0 +1,31 @@
+td, th {
+    border: 1px solid;
+}
+
+table{
+    border-collapse: collapse;
+}
+
+#header {
+    margin: 0;
+    padding: 5px;
+    background-color: aqua;
+    line-height: 21.2px;
+    display: block;
+}
+
+.right {
+    float: right;
+}
+
+#red {
+    color: red;
+}
+
+form {
+    margin-block: 5px;
+}
+
+input {
+    margin-block: 3px;
+}

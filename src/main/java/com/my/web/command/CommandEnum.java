@@ -13,6 +13,18 @@ public enum CommandEnum {
         {
             this.command = new RegistrationCommand();
         }
+    }, USERS {
+        {
+            this.command = new UsersCommand();
+        }
+    }, BLOCK {
+        {
+            this.command = new BlockCommand();
+        }
+    }, MODER {
+        {
+            this.command = new ModerCommand();
+        }
     };
     ActionCommand command;
     public ActionCommand getCommand() {

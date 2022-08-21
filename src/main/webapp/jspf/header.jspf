@@ -1,0 +1,29 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: podze
+  Date: 16.08.2022
+  Time: 10:49
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<div id="header">
+    <a href="${pageContext.request.contextPath}/">Home</a>
+    <c:choose>
+        <c:when test="${not empty sessionScope.user}">
+            <c:if test="${sessionScope.role eq \"admin\"}">
+                <a href="${pageContext.request.contextPath}/controller?command=users">Users</a>
+            </c:if>
+
+            <div class="right">
+                <a href="${pageContext.request.contextPath}/jsp/cabinet.jsp">${sessionScope.user.login}</a>, hello!
+                <a href="${pageContext.request.contextPath}/controller?command=logout">Logout</a>
+            </div>
+        </c:when>
+        <c:otherwise>
+
+            <a href="${pageContext.request.contextPath}/login">Login</a>
+            <a href="${pageContext.request.contextPath}/registration">Register</a>
+        </c:otherwise>
+    </c:choose>
+</div>

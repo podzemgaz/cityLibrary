@@ -3,7 +3,7 @@ package com.my.web.command;
 import com.my.entity.Role;
 import com.my.entity.User;
 import com.my.logic.RegisterLogic;
-import com.my.logic.UserLogic;
+
 import com.my.util.ConfigManager;
 import jakarta.servlet.http.HttpServletRequest;
 import org.apache.logging.log4j.LogManager;
@@ -20,7 +20,11 @@ public class RegistrationCommand implements ActionCommand{
 
         User user;
 
+        LOG.trace("Set errorMessage: null");
+        req.getSession().setAttribute("errorMessage", null);
+
         String login = req.getParameter(Constants.PARAM_NAME_LOGIN);
+        LOG.trace("Login in request: " + login);
         String pass = req.getParameter(Constants.PARAM_NAME_PASSWORD);
         String confirmPass = req.getParameter("confirm_password");
 
@@ -36,7 +40,7 @@ public class RegistrationCommand implements ActionCommand{
             LOG.error(ERR_DIFFERENT_PASSWORDS);
             req.getSession().setAttribute("errorMessage", ERR_DIFFERENT_PASSWORDS);
             page = ConfigManager.getProperty("path.page.register");
-        } else if ( ((user = UserLogic.insertUser(login, pass))) != null){
+        } else if ( ((user = RegisterLogic.insertUser(login, pass))) != null){
             req.getSession().setAttribute("user", user);
             req.getSession().setAttribute("role", Role.getRole(user).toString());
             page = ConfigManager.getProperty("path.page.main");

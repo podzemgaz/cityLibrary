@@ -13,7 +13,7 @@ public class LoginLogic extends Logic {
     public static User checkLoginPass(String enterLogin, String enterPass) {
 
         User user = null;
-        boolean result = false;
+        boolean result;
 
         UserDao userDao = daoFactory.getUserDao();
         EntityTransaction transaction = new EntityTransaction();
@@ -28,6 +28,8 @@ public class LoginLogic extends Logic {
         } catch (DaoException e) {
             LOG.error("Transaction error");
         }
+
+        LOG.trace("Obtained user: " + user);
         return user;
     }
 }

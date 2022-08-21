@@ -14,7 +14,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 
-@WebServlet( value = {"/controller", "/jsp/controller"})
+@WebServlet( value = {"/controller"})
 public class Controller extends HttpServlet {
     private final static Logger LOG = LogManager.getLogger(Controller.class);
     @Serial
@@ -30,7 +30,7 @@ public class Controller extends HttpServlet {
         dispatcher.forward(req, res);
     }
 
-    public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+    public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
         LOG.info("Controller#doPost");
         /*String login = request.getParameter("login");
         LOG.info("login: " + login);
@@ -47,16 +47,15 @@ public class Controller extends HttpServlet {
         res.sendRedirect(page);
     }
 
-    private String process(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    private String process(HttpServletRequest req, HttpServletResponse res) throws IOException {
         LOG.debug("Controller starts");
+
         String page;
         //define command from jsp
         ActionFactory actionFactory = new ActionFactory();
         ActionCommand command = actionFactory.defineCommand(req);
 
         page = command.execute(req);
-
-
         /*
         *
         * */

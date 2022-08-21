@@ -10,19 +10,22 @@
 <html>
 <head>
   <title>Login Page</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
     <c:if test="${not empty sessionScope.user}">
-        <jsp:forward page="main.jsp"/>
+        <c:redirect url="/jsp/main.jsp"/>
     </c:if>
     <h3>Login</h3>
-    <form method="post" action="controller">
-      <input type="hidden" name="command" value="login">
-        <input type="text" name="login" placeholder="Login" />
-        <input type="password" name="password" placeholder="Password" />
-        <input type="submit" value="Login">
-    </form>
-    <a href="registration.jsp">Register</a>
+    <%@include file="/jspf/header.jspf"%>
+    <div>
+        <form method="post" action="${pageContext.request.contextPath}/controller">
+            <input type="hidden" name="command" value="login">
+            <input type="text" name="login" placeholder="Login" /><br>
+            <input type="password" name="password" placeholder="Password" /><br>
+            <input type="submit" value="Login">
+        </form>
+    </div>
 
    <%@include file="/jspf/error.jspf"%>
 </body>

@@ -9,6 +9,19 @@ public class User extends Entity{
     private String login;
     private int roleId;
 
+    public int getStatusId() {
+        return statusId;
+    }
+
+    public void setStatusId(int statusId) {
+        this.statusId = statusId;
+    }
+
+    private int statusId;
+
+    public User() {
+    }
+
     public String getLogin() {
         return login;
     }
@@ -31,6 +44,7 @@ public class User extends Entity{
                 "id='" + getId() + '\'' +
                 "login='" + login + '\'' +
                 ", roleId=" + roleId +
+                ", statusId=" + statusId +
                 '}';
     }
 }
